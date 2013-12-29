@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+#define OUT 0
+#define IN 1
+
+main()
+{
+    int state = OUT;
+    int c;
+    int number = 0;
+
+    while ((c = getchar()) != EOF)
+    {
+        if (((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')))
+        {
+            putchar(c);
+
+            if (state == OUT)
+            {
+                state = IN;
+                number++;
+            }
+        }
+        else
+        {
+            putchar('\n');
+            state = OUT;
+        }
+    }
+    printf("The number of words is: %d\n", number);
+}
+
