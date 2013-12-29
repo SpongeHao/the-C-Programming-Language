@@ -1,0 +1,40 @@
+#include <stdio.h>
+#define UPPER 300
+#define LOWER 0
+#define STEP 20
+
+main()
+{
+    float farh, celsius;
+
+    farh = LOWER;
+    celsius = LOWER;
+    printf("---C to F---\n");
+    while (celsius <= UPPER)
+    {
+        farh = (9.0*celsius) / 5.0 + 32.0;
+        printf("%3.2f %6.2f\n", celsius, farh);
+        celsius += STEP;
+    }
+    printf("------------\n");
+    for (celsius = UPPER; celsius >= LOWER; celsius -= STEP)
+    {
+        printf("%3.2f %6.2f\n", celsius, (9.0*celsius) / 5.0 + 32.0);
+    }
+
+    farh = LOWER;
+    celsius = LOWER;
+    printf("---F to C---\n");
+    while (farh <= UPPER)
+    {
+        celsius = 5.0 * (farh-32.0) / 9.0;
+        printf("%3.2f %6.2f\n", farh, celsius);
+        farh += STEP;
+    }
+    printf("------------\n");
+    for (farh = UPPER; farh >= LOWER; farh -= STEP)
+    {
+        printf("%3.2f %6.2f\n", farh, 5.0 * (farh-32.0) / 9.0);
+    }
+}
+
