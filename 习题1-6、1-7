@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+main()
+{
+    float c;
+
+    while (c = getchar() != EOF)
+    {
+        printf("getchar != EOF --- %3.1f\n", c);
+        printf("EOF is %d\n", EOF);
+    }
+}
+
