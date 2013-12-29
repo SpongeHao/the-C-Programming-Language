@@ -1,0 +1,52 @@
+#include <stdio.h>
+#define UPPER 300
+#define LOWER 0
+#define STEP 20
+
+float CtoF(float celsius);
+float FtoC(float farh);
+
+main()
+{
+    float farh, celsius;
+
+    farh = LOWER;
+    celsius = LOWER;
+    printf("---C to F---\n");
+    while (celsius <= UPPER)
+    {
+
+        printf("%3.2f %6.2f\n", celsius, CtoF(celsius));
+        celsius += STEP;
+    }
+    printf("------------\n");
+    for (celsius = UPPER; celsius >= LOWER; celsius -= STEP)
+    {
+        printf("%3.2f %6.2f\n", celsius, CtoF(celsius));
+    }
+
+    farh = LOWER;
+    celsius = LOWER;
+    printf("---F to C---\n");
+    while (farh <= UPPER)
+    {
+        printf("%3.2f %6.2f\n", farh, FtoC(farh));
+        farh += STEP;
+    }
+    printf("------------\n");
+    for (farh = UPPER; farh >= LOWER; farh -= STEP)
+    {
+        printf("%3.2f %6.2f\n", farh, FtoC(farh));
+    }
+}
+
+float CtoF(float celsius)
+{
+    return ((9.0*celsius) / 5.0 + 32.0);
+}
+
+float FtoC(float farh)
+{
+    return (5.0 * (farh-32.0) / 9.0);
+}
+
