@@ -1,0 +1,76 @@
+#include <stdio.h>
+
+#define MAXSIZE 10
+
+int getline(char line[], int maxsize);
+void squeeze(char s1[], char s2[]);
+int any(char s1[], char s2[]);
+
+main()
+{
+    char s1[MAXSIZE], s2[MAXSIZE];
+    int n[MAXSIZE], i;
+
+    printf("s1: ");
+    getline(s1, MAXSIZE);
+    printf("s2: ");
+    getline(s2, MAXSIZE);
+
+    squeeze(s1, s2);
+    printf("%s", s1);
+
+    any(s1, s1);
+    // 函数返回多个值时如何处理？
+    /*for (i = 0; i < MAXSIZE; i++)
+    {
+        n[i] = any(s1, s2);
+        printf("%d", n[i]);
+    }*/
+}
+
+int getline(char line[], int maxsize)
+{
+    int i, c;
+
+    for (i = 0; i < maxsize-1 && (c = getchar()) != EOF && c != '\n'; i++)
+    {
+        line[i] = c;
+    }
+    line[i] = '\0';
+
+    return i;
+}
+
+void squeeze(char s1[], char s2[])
+{
+    int i, j, k;
+
+    for (i = 0, k = 0; s1[i] != '\0'; i++)
+    {
+        for (j = 0; s2[j] != '\0' && s2[j] != s1[i]; j++)
+            ;
+        if (s2[j] == '\0')
+        {
+            s1[k++] = s1[i];
+        }
+    }
+    s1[k] = '\0';
+}
+
+int any(char s1[], char s2[])
+{
+    int i, j;
+
+    for (i = 0; s1[i] != '\0'; i++)
+    {
+        for (j = 0; s2[j] != '\0'; j++)
+        {
+            if (s1[i] == s2[j])
+            {
+                return i;
+            }
+        }
+    }
+    return -1;
+}
+
