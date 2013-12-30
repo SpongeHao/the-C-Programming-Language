@@ -1,0 +1,83 @@
+#include <stdio.h>
+
+#define MAXSIZE 10
+#define YES 1
+#define NO 0
+
+int atoi(char a[]);
+int htoi(char h[]);
+int getline(char line[], int maxsize);
+
+main()
+{
+    char a[MAXSIZE];
+    getline(a, MAXSIZE);
+    //printf("atoi---%d", atoi(a));
+    printf("htoi---%d", htoi(a));
+}
+
+int getline(char line[], int maxsize)
+{
+    int i, c;
+
+    for (i = 0; i < maxsize-1 && (c = getchar()) != EOF && c != '\n'; i++)
+    {
+        line[i] = c;
+    }
+    line[i] = '\0';
+    return i;
+}
+
+int atoi(char a[])
+{
+    int i, n;
+
+    n = 0;
+    for (i = 0; a[i] >= '0' && a[i] <= '9'; i++)
+    {
+        n = n * 10 + (a[i] - '0');
+    }
+    return n;
+}
+
+int htoi(char h[])
+{
+    int i, n, inhex, hexdigit;
+
+    i = 0;
+    if (h[i] == '0')
+    {
+        ++i;
+        if (h[i] == 'x' || h[i] == 'X')
+        {
+            ++i;
+        }
+    }
+
+    n = 0;
+    inhex = YES;
+    for ( ; inhex == YES; ++i)
+    {
+        if (h[i] <= '9' && h[i] >= '0')
+        {
+            hexdigit = h[i] - '0';
+        }
+        else if (h[i] <= 'f' && h[i] >= 'a')
+        {
+            hexdigit = h[i] - 'a' + 10;
+        }
+        else if (h[i] <= 'F' && h[i] >= 'A')
+        {
+            hexdigit = h[i] - 'A' + 10;
+        }
+        else
+        {
+            inhex = NO;
+        }
+        if (inhex == YES)
+        {
+            n = 16 * n + hexdigit;
+        }
+    }
+    return n;
+}
